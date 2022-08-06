@@ -45,3 +45,13 @@ There are two alternatives from here:
 This route makes voters that don't necessarily require the bribe, also get the reward. So, it's less efficient in the sense that the subset of voters that are only interested in the bribe could get a bigger reward.
 
 Self selecting as a bribee is easy: just delegate to the briber delegate, and don't overwrite your vote. Also, implementing this as an auction is easier, and arguably more fun, so I went with it.
+
+## Future improvements
+
+You could reduce trust in this scheme and increase scalability by:
+
+1. bribes are posted as a `bribeeCount` and `bribesRoot`, the root of a merkle tree with all the addresses
+2. they are posted and they go through an optimistic period.
+3. challengers take it to kleros
+
+This way you can remove the briber fee, as it is no longer necessary to have this party handling trust. This also removes the scalability problem (this contract should break with >500 delegators).
