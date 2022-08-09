@@ -91,9 +91,9 @@ const Home = () => {
       <h1>Home</h1>
       <p>
         Hello! If you are not interested in auctioning the votes, and you only
-        want to obtain the bribe, please click on{" "}
+        want to obtain the bribe, please{" "}
         <a href="https://github.com/greenlucid/poh-briber/blob/master/GUIDE.md">
-          Guide
+          <b style={{ fontSize: 30, color: "green" }}>click on this Guide</b>
         </a>{" "}
         and follow the instructions to delegate to me in Snapshot. Once you
         delegate to me, you're already eligible to obtain the bribes, and you
@@ -101,7 +101,7 @@ const Home = () => {
       </p>
       <p>
         If you want to interact with the auctions, please connect to Gnosis
-        Chain.
+        Chain. Then, you will be able to see the auctions.
       </p>
       {auctionCount !== undefined && <p>Auctions: {auctionCount.toString()}</p>}
       {auctions
