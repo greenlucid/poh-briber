@@ -23,7 +23,7 @@ contract PohBriber {
   }
   
   address public constant briber = 0x89c4ACb8B5b5B8E5B2121934B9e143569a914C80;
-  address public constant dao = 0xa3954B4aDB7caca9C188c325CF9F2991AbB3cF71; // todo get right
+  address public constant dao = 0xa3954B4aDB7caca9C188c325CF9F2991AbB3cF71;
 
   uint256 public constant briberPercent = 5; // compensate briber for handling the contract.
   uint256 public constant daoPercent = 45; // send a generous amount to the dao.
@@ -91,5 +91,9 @@ contract PohBriber {
       payable(_bribees[i]).send(auction.secondBid / _bribees.length * bribePercent / 100);
     }
     auction.distributed = true;
+  }
+
+  function auctionCount() view public returns (uint256){
+    return auctions.length;
   }
 }

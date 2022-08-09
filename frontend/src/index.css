@@ -1,4 +1,6 @@
 .appbar {
   border: 20;
+  display: flex;
   font-size: large;
+  justify-content: space-around;
 }
