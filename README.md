@@ -9,9 +9,9 @@ Experimental project to reward voters that delegate to a briber delegate in PoH.
 - The winner of the auction can decide the option to vote.
 - The briber votes for this option in Snapshot.
 - After the vote is over, the briber calls a function in the contract to distribute rewards. In this function, the addresses of the bribees are passed as calldata.
-  - A small amount goes to the briber in the concept as a dev fee, and especially, to compensate the human effort of creating the auctions and calling the functions.
-  - A significant amount is devoted to contribute to the DAO.
-  - The remainder is used to reward the bribees.
+  - A small amount goes to the briber in the concept as a dev fee, and especially, to compensate the human effort of creating the auctions and calling the functions. (5%)
+  - A significant amount is devoted to contribute to the DAO. (45%)
+  - The remainder is used to reward the bribees. (50%)
 
 Delegating the vote is not enough to be accepted as a bribee, it is also needed to not have actually voted, to make sure the delegator does not override the vote.
 

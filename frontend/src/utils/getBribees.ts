@@ -23,6 +23,30 @@ interface Proposal {
 const headers = new Headers()
 headers.set("Content-Type", "application/json")
 
+export const getVp = async (id: string, briber: string): Promise<number> => {
+  const subgraphQuery = {
+    query: `
+      {
+        vp(voter: "${briber}", space: "poh.eth", proposal: "${id}") {
+          vp
+        }
+      }
+    `,
+  }
+  const response = await fetch(
+    process.env.REACT_APP_SNAPSHOT_GRAPHQLAPI as string,
+    {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(subgraphQuery),
+    }
+  )
+  const flane = await response.json()
+  console.log("flane", flane)
+  const stringedVp =  flane.data.vp as {vp: string}
+  return Number(stringedVp.vp) 
+}
+
 const getProposal = async (id: string): Promise<Proposal> => {
   const subgraphQuery = {
     query: `

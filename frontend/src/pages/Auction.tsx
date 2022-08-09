@@ -9,12 +9,22 @@ import { useMatch } from "react-router-dom"
 import humanizeAmount from "../utils/humanizeAmount"
 import explorerLink from "../utils/explorerLink"
 import dehumanizeAmount from "../utils/dehumanizeAmount"
-import getBribees from "../utils/getBribees"
+import getBribees, { getVp } from "../utils/getBribees"
 
 const AuctionInfo: React.FC<{ auction: Auction; chainId: number }> = ({
   auction,
   chainId,
 }) => {
+  const [vp, setVp] = useState<number | undefined>()
+
+  useEffect(() => {
+    // got tired so im not fetching briber in this component
+    getVp(
+      auction.proposalId,
+      "0x89c4ACb8B5b5B8E5B2121934B9e143569a914C80"
+    ).then((vp) => setVp(vp))
+  }, [])
+
   return (
     <div>
       <a href={`/#/auction/${auction.index}`}>
@@ -29,6 +39,7 @@ const AuctionInfo: React.FC<{ auction: Auction; chainId: number }> = ({
             {shorten(auction.proposalId)}
           </a>
         </li>
+        <li>Voting Power: {vp ? vp : "loading..."}</li>
         <li>Highest Bid: {humanizeAmount(auction.highBid)} xDAI</li>
         <li>Second Bid: {humanizeAmount(auction.secondBid)} xDAI</li>
         <li>
@@ -144,6 +155,7 @@ const DistributeControl: React.FC<{ auction: Auction }> = ({ auction }) => {
       briber: briber as string,
       proposalId: auction.proposalId,
     })
+    bribees.push(briber as string) // briber is also forced to vote with everyone.
     console.log("bribees:", bribees)
     const pohBriber = new ethers.Contract(
       getPohBriberAddress(web3.chainId as number),
@@ -161,13 +173,7 @@ const DistributeControl: React.FC<{ auction: Auction }> = ({ auction }) => {
     return null
   }
 
-  return (
-    <button
-      onClick={() => handleDistribution()}
-    >
-      Distribute
-    </button>
-  )
+  return <button onClick={() => handleDistribution()}>Distribute</button>
 }
 
 const AuctionDetailed: React.FC = () => {

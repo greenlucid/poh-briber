@@ -66,6 +66,7 @@ const AppBar = () => {
           contract: {shorten(pohBriberAddress as string)}
         </a>
       )}
+      <a href="https://github.com/greenlucid/poh-briber/blob/master/GUIDE.md">Guide</a>
     </div>
   )
 }
