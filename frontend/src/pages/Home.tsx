@@ -20,7 +20,9 @@ export interface Auction {
 const AuctionC: React.FC<{ auction: Auction }> = ({ auction }) => {
   return (
     <div>
-      <a href={`/#/auction/${auction.index}`}><h3>auction #{auction.index}</h3></a>
+      <a href={`/#/auction/${auction.index}`}>
+        <h3>auction #{auction.index}</h3>
+      </a>
       <ul>
         <li>
           proposal:{" "}
@@ -86,9 +88,28 @@ const Home = () => {
 
   return (
     <div>
-      <h1>home</h1>
+      <h1>Home</h1>
+      <p>
+        Hello! If you are not interested in auctioning the votes, and you only
+        want to obtain the bribe, please click on{" "}
+        <a href="https://github.com/greenlucid/poh-briber/blob/master/GUIDE.md">
+          Guide
+        </a>{" "}
+        and follow the instructions to delegate to me in Snapshot. Once you
+        delegate to me, you're already eligible to obtain the bribes, and you
+        don't need to do anything else!
+      </p>
+      <p>
+        If you want to interact with the auctions, please connect to Gnosis
+        Chain.
+      </p>
       {auctionCount !== undefined && <p>Auctions: {auctionCount.toString()}</p>}
-      {auctions.slice().reverse().map(auction => <AuctionC auction={auction} key={auction.index} />)}
+      {auctions
+        .slice()
+        .reverse()
+        .map((auction) => (
+          <AuctionC auction={auction} key={auction.index} />
+        ))}
     </div>
   )
 }
