@@ -10,7 +10,8 @@
     "semi": false
   },
   "scripts": {
-    "start": "npx react-scripts start"
+    "start": "npx react-scripts start",
+    "build": "npx react-scripts build"
   },
   "dependencies": {
     "@web3-react/core": "^6.1.9",
